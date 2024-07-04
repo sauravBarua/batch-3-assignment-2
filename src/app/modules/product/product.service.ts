@@ -16,6 +16,13 @@ const  getSingleProductFromDB = async (id: String)=>{
     return result;
 }
 
+const productUpdateFromDB = async(id:String,payload:String)=>{
+    const result = await ProductModel.findOneAndUpdate({id},payload,{
+        new : true,
+    })
+    return result
+}
+
 const deleteProductFromDb = async (id: String)=>{
     const result = await ProductModel.deleteOne({id});
     return result;
@@ -25,5 +32,6 @@ export const ProductServices = {
     createProductIntoDB,
     getAllProductFromDB,
     getSingleProductFromDB,
-    deleteProductFromDb
+    deleteProductFromDb,
+    productUpdateFromDB
 }
