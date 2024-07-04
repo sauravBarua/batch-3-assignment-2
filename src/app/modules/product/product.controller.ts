@@ -28,7 +28,7 @@ const getAllProducts = async (req:Request,res: Response)=>{
         const result = await ProductServices.getAllProductFromDB()
         res.status(200).json({
             success: true,
-            message:"Products are retrieved succesfully!",
+            message:"Products are fetched succesfully!",
             data: result
         })
 
@@ -41,8 +41,27 @@ const getAllProducts = async (req:Request,res: Response)=>{
     }
 }
 
+const getSingleProduct = async (req:Request,res: Response)=>{
+    try{
+        const productId = req.params.id
+        const result = await ProductServices.getSingleProductFromDB(productId)
+        res.status(200).json({
+            success: true,
+            message:"Products are fetched succesfully!",
+            data: result
+        })
+
+    }catch(error:any){
+        res.status(500).json({
+            success: false,
+            message: error.message  || "Something went wrong!",
+            error: error,
+        })
+    }
+}
 
 export const ProductControllers = {
     createProduct,
-    getAllProducts
+    getAllProducts,
+    getSingleProduct
 }
