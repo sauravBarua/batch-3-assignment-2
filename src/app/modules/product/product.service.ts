@@ -1,6 +1,7 @@
 import {ProductModel} from "../product/product.model"
+import { TProduct } from "./product.interface"
 
-const createProductIntoDB = async(product:any) =>{
+const createProductIntoDB = async(product:TProduct) =>{
     const result = await ProductModel.create(product)
     return result
 }
@@ -10,21 +11,22 @@ const getAllProductFromDB = async()=>{
     return result;
 }
 
-const  getSingleProductFromDB = async (id: String)=>{
-    const result = await ProductModel.findOne({id})
+const  getSingleProductFromDB = async (id: string)=>{
+    console.log(id)
+    const result = await ProductModel.findOne({_id: id})
 
     return result;
 }
 
-const productUpdateFromDB = async(id:String,payload:String)=>{
-    const result = await ProductModel.findOneAndUpdate({id},payload,{
+const productUpdateFromDB = async(id:string, payload: Partial<TProduct>)=>{
+    const result = await ProductModel.findOneAndUpdate({_id: id},payload,{
         new : true,
     })
     return result
 }
 
-const deleteProductFromDb = async (id: String)=>{
-    const result = await ProductModel.deleteOne({id});
+const deleteProductFromDb = async (id: string)=>{
+    const result = await ProductModel.deleteOne({_id: id});
     return result;
 }
 
