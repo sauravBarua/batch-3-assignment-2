@@ -13,11 +13,36 @@ const createProduct = async (req:Request,res: Response)=>{
             data: result
         })
 
-    }catch(error){
-        console.log(error)
+    }catch(error:any){
+        res.status(500).json({
+            success: false,
+            message: error.message  || "Something went wrong!",
+            error: error,
+        })
     }
 }
 
-export const ProductController = {
-    createProduct
+
+const getAllProducts = async (req:Request,res: Response)=>{
+    try{
+        const result = await ProductServices.getAllProductFromDB()
+        res.status(200).json({
+            success: true,
+            message:"Products are retrieved succesfully!",
+            data: result
+        })
+
+    }catch(error:any){
+        res.status(500).json({
+            success: false,
+            message: error.message  || "Something went wrong!",
+            error: error,
+        })
+    }
+}
+
+
+export const ProductControllers = {
+    createProduct,
+    getAllProducts
 }
