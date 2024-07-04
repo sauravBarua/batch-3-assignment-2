@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response} from "express";
 import { ProductServices } from "./product.service";
 
@@ -43,14 +44,16 @@ const getAllProducts = async (req:Request,res: Response)=>{
 
 const getSingleProduct = async (req:Request,res: Response)=>{
     try{
-        const productId = req.params.id
+        const {productId} = req.params
+        // console.log(productId)
+
         const result = await ProductServices.getSingleProductFromDB(productId)
         res.status(200).json({
             success: true,
             message:"Products are fetched succesfully!",
             data: result
         })
-
+     
     }catch(error:any){
         res.status(500).json({
             success: false,
@@ -62,7 +65,7 @@ const getSingleProduct = async (req:Request,res: Response)=>{
 
 const updeteProduct = async (req:Request,res: Response)=>{
     try{
-        const productId = req.params.id
+        const {productId} = req.params
         const payload = req.body
         console.log(payload)
 
@@ -83,7 +86,7 @@ const updeteProduct = async (req:Request,res: Response)=>{
 }
 const deletedProduct = async (req:Request,res: Response)=>{
     try{
-        const productId = req.params.id
+        const {productId} = req.params
         const result = await ProductServices.deleteProductFromDb(productId)
         res.status(200).json({
             success: true,
