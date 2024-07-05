@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response} from "express";
 import { ProductServices } from "./product.service";
+import { TProduct } from "./product.interface";
 
 
-
+//create Product
 
 const createProduct = async (req:Request,res: Response)=>{
     try{
@@ -23,15 +24,17 @@ const createProduct = async (req:Request,res: Response)=>{
     }
 }
 
+// Get All Products
 
-const getAllProducts = async (req:Request,res: Response)=>{
+const getAllProducts = async (req:Request,res: Response): Promise<void>=>{
 
     const search = req.query.searchTerm as string;
     console.log(search)
 
     try{
 
-        let result;
+        let result: TProduct[];
+
         if(search){
              result = await ProductServices.getAllProductFromDB(req.query)
             res.status(200).json({
@@ -58,7 +61,7 @@ const getAllProducts = async (req:Request,res: Response)=>{
     }
 }
 
-
+// Get Single Product
 
 const getSingleProduct = async (req:Request,res: Response)=>{
     try{
@@ -81,6 +84,7 @@ const getSingleProduct = async (req:Request,res: Response)=>{
     }
 }
 
+// Updete Product
 const updeteProduct = async (req:Request,res: Response)=>{
     try{
         const {productId} = req.params
@@ -102,6 +106,9 @@ const updeteProduct = async (req:Request,res: Response)=>{
         })
     }
 }
+
+// Deleted Product
+
 const deletedProduct = async (req:Request,res: Response)=>{
     try{
         const {productId} = req.params
