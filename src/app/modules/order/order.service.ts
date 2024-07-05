@@ -8,6 +8,22 @@ const createOrderIntoDB = async(product:TOrder) =>{
     return result
 }
 
+//Get Order by email From DB
+
+const getAllOrderFromDB = async  (query?: { email?: string }) =>{
+    
+    let result: TOrder[];
+
+    if (query && query.email){
+        result = await OrderModel.find({
+            email:  { $regex : query.email , $options: 'i'}
+        })
+    }else{
+        result = await OrderModel.find();
+    }
+    return result;
+}
 export const OrderServices = {
     createOrderIntoDB,
+    getAllOrderFromDB
 }
