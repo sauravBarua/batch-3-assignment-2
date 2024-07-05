@@ -35,6 +35,13 @@ const getAllOrders = async (req: Request, res: Response): Promise<void> => {
 
     if (search) {
       result = await OrderServices.getAllOrderFromDB(req.query);
+      if (result.length === 0) {
+        res.status(404).json({
+          success: false,
+          message: "Order not found",
+        });
+        return;
+      }
 
       res.status(200).json({
         success: true,
@@ -43,6 +50,13 @@ const getAllOrders = async (req: Request, res: Response): Promise<void> => {
       });
     } else {
       result = await OrderServices.getAllOrderFromDB();
+      if (result.length === 0) {
+        res.status(404).json({
+          success: false,
+          message: "Order not found",
+        });
+        return;
+      }
       res.status(200).json({
         success: true,
         message: "Orders fetched successfully!",
