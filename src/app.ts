@@ -14,7 +14,6 @@ app.use(cors());
 app.use("/api", ProductRoutes);
 app.use("/api", OrderRoutes);
 
-
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!!!!!!!");
 });

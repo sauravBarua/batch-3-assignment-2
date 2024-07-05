@@ -1,25 +1,20 @@
-import { Schema, model, Document} from 'mongoose';
-import { TOrder } from './order.interface';
+import { Schema, model, Document } from "mongoose";
+import { TOrder } from "./order.interface";
 
 const orderSchema = new Schema<TOrder & Document>({
-    email: {
-        type: String,
-        required: true,
-    },
-    productId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Product', 
-        required: true
-    },
-    price: {
-        type: Number,
-        required: true
-    },
-    quantity: {
-        type: Number,
-        required: true,
-    }
+  email: {
+    type: String,
+  },
+  productId: {
+    type: Schema.Types.ObjectId,
+    ref: "Product",
+  },
+  price: {
+    type: Number,
+  },
+  quantity: {
+    type: Number,
+  },
 });
 
-
-export const OrderModel = model<TOrder & Document>('Order', orderSchema);
+export const OrderModel = model<TOrder & Document>("Order", orderSchema);
