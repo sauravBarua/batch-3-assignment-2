@@ -9,7 +9,7 @@ Endpoint: https://e-commerce-backend-eta-eosin.vercel.app/api/products
 Endpoint: https://e-commerce-backend-eta-eosin.vercel.app/api/products
 
 3. Retrieve a Specific Product by ID
-Endpoint: https://e-commerce-backend-eta-eosin.vercel.app/api/products/:productId
+Endpoint: https://e-commerce-backend-eta-eosin.vercel.app/api/products/668812389b1f5cc6848443a6
 
 4. Update Product Information
 Endpoint: https://e-commerce-backend-eta-eosin.vercel.app/api/products/:productId
