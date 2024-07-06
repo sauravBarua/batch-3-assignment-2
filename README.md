@@ -21,6 +21,7 @@ Endpoint: https://e-commerce-backend-eta-eosin.vercel.app/api/products/:productI
 Endpoint: https://e-commerce-backend-eta-eosin.vercel.app/api/products?searchTerm=iphone
 
 Order Management
+
 1.Create a New Order
 Endpoint: https://e-commerce-backend-eta-eosin.vercel.app/api/orders
 
