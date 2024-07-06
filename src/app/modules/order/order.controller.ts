@@ -7,8 +7,8 @@ import { TOrder } from "./order.interface";
 
 const createOrder = async (req: Request, res: Response) => {
   try {
-    const { productId, quantity } = req.body;
-    console.log("productId", productId, "quantity", quantity);
+    // const { productId, quantity, email,price } = req.body;
+    // console.log(req.body);
 
     const result = await OrderServices.createOrderIntoDB(req.body);
     res.status(200).json({

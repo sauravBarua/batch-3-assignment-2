@@ -3,15 +3,15 @@ import { TOrder } from "./order.interface";
 import { ProductModel } from "../product/product.model";
 
 //Create Order Into DB
-
-const createOrderIntoDB = async ({ productId, quantity }: TOrder) => {
+const createOrderIntoDB = async (order: TOrder) => {
+  const { productId, quantity } = order;
   const product = await ProductModel.findById(productId);
 
   if (!product?.inventory.inStock) {
     throw new Error("Insufficient quantity available in inventory");
   }
 
-  const result = OrderModel.create({ productId, quantity });
+  const result = OrderModel.create(order);
 
   await ProductModel.updateOne(
     { _id: productId, "inventory.quantity": { $gte: quantity } },
